@@ -1,18 +1,157 @@
-*{
-    margin: 3px;
-    background: #fff;
+.main{
+  display: flex;
+  flex-direction: column;
+  background-color: #f3f3f3;
+  .bar{
+    background: linear-gradient(to left, rgba(185,57,208,0.8), rgba(20,145,222,0.8));
+    opacity: 0.85;
+    position: relative;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .logo{
+      align-self: center;
+      color: rgb(255, 255, 255);
+    }
+    .menus{
+      align-self: center;
+      color: rgb(255, 255, 255);
+    }
+    .join{
+      align-self: center;
+      color: rgb(255, 255, 255);
+    }
   }
-  .main{
-    .head{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      .logo{
+
+  .head{
+    display: flex;
+    flex-direction: column;
+    //background: #4177fd;
+    //background: linear-gradient(to left, rgba(185,57,208,0.8), rgba(20,145,222,0.8));
+    
+    background-image: url(../../img/bgI.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 500px;
+
+    .grad{
+      background: linear-gradient(to left, rgba(185, 57, 208, 0.6), rgba(20,145,222,0.6));    
+      min-height: 500px;
+      
+      .home_title{
+        left: 50%;
+        position: absolute;
+        text-align: center;
+        top: 40%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        color: white;
+        font-family: 'Muli', sans-serif;
+        font-size: 18px;
+
+        .jbtn{
+          position: relative;
+          top: 50px;
+          .join{
+            a {
+              background: #1491de none repeat scroll 0 0;
+              color: #ffffff;
+              font-weight: 600;
+              letter-spacing: 1px;
+              margin-left: 10px;
+              padding: 10px 20px ;
+              font-size: 14px;
+              text-decoration: none;
+            }
+            a:hover{
+              transition: all 0.4s ease 0s;
+              background: #fff;
+              color: black;
+              text-decoration: underline;
+              
+            }
+
+            
+          }
+        }
+        
       }
-      .menus{
-      }
-      .join{
+
+    
+
+      
+    }
+
+
+
+  }
+
+  .body{
+    display: flex;
+    flex-direction: column;
+    .btitle{
+      margin: 50px 0px;
+      align-self: center;
+      h3 {
+        text-align: center;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #000000;
+    }
+      span {
+        color: rgba(20,145,222,0.8);
       }
     }
-    
+    .bdoc{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      text-transform: capitalize;
+      .signup{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        width: 300px;
+        .stxt{
+          
+          text-align: center;
+        }
+        .simg{
+          content: url(../../img/signup.png);
+          height: 150px;
+          align-self: center;
+        }
+      }
+      .upload{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        .utxt{
+          text-align: center;
+        }
+        .uimg{
+          content: url(../../img/upload.png);
+          height: 150px;
+          align-self: center;
+        }
+      }
+      .search{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        .srtxt{
+          text-align: center;
+        }
+        .srimg{
+          content: url(../../img/search.png);
+          height: 150px;
+          align-self: center;
+        }
+      }
+    }
+  
   }
+}
