@@ -55,7 +55,8 @@
           position: relative;
           top: 50px;
           .join{
-            a {
+            @media (min-width: 1025px){
+            .a {
               background: #1491de none repeat scroll 0 0;
               color: #ffffff;
               font-weight: 600;
@@ -65,6 +66,7 @@
               font-size: 14px;
               text-decoration: none;
             }
+          }
             a:hover{
               transition: all 0.4s ease 0s;
               background: #fff;
@@ -151,7 +153,57 @@
           align-self: center;
         }
       }
+
+      
+    }
+    .dpie{
+      
+      margin: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .pie1{
+        
+        height: 400px;
+      }
+      .pie2{
+        height: 400px;
+      }
+      .pie3{
+        height: 400px;
+      }
     }
   
+  }
+
+ 
+ 
+  .footer{
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(to left, rgba(185,57,208,0.8), rgba(20,145,222,0.8));
+    height: 100px;
+    justify-content: space-between;
+    .who{
+
+    }
+    .usr{
+    }
+    .info{
+    }
+
+  }
+}
+
+@media (max-width: 480px) {
+  .a {
+    background: #1491de none repeat scroll 0 0;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-left: 10px;
+    padding: 10px 10px ;
+    font-size: 14px;
+    text-decoration: none;
   }
 }
