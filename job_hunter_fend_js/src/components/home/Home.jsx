@@ -12,7 +12,7 @@ class Home extends Component {
           <div className="logo">logo</div>
           <div className="menus">menus</div>
           <div className="join">
-            <a  href="/" className="jj" title="Join"><ImUserPlus /></a>
+            <a  href="/join" className="jj" title="Join"><ImUserPlus /></a>
             
             <a href="/" className="jp" title="Post"><BsFillCloudUploadFill /></a>
               
@@ -25,7 +25,7 @@ class Home extends Component {
             <p>Quisque at magna maximus, gravida velit a, suscipit diam. Aenean fringilla ante quis nisl volutpat, sit amet mollis ante bibendum. Cras placerat metus elit, euismod tincidunt nunc laoreet ut. Interdum et malesuada fames ac ante.</p>
             <div className="jbtn">
               <div className="join">
-              <a  href="/" className="a" title="Join"><i><ImUserPlus /></i> Join</a>
+              <a  href="/join" className="a" title="Join"><i><ImUserPlus /></i> Join</a>
               <a href="/" className="a" title="Post"><i ><BsFillCloudUploadFill /></i> Upload</a>
               </div >
             </div>
