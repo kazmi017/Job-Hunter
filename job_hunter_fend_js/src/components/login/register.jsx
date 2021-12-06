@@ -30,9 +30,11 @@ export class Register extends React.Component {
           </div>
         </div>
         <div className="footer">
+        <a href="/dashboard">
           <button type="button" className="btn">
             Register
           </button>
+          </a>
         </div>
       </div>
     );

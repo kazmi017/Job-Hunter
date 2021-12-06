@@ -1,0 +1,183 @@
+.main1{
+    padding: 10px;
+    margin: 10px;
+    font-weight: bold;
+    .stats{
+        display: flex;
+        flex-direction: row;
+        
+        .total{
+            background-color: rgba(185, 57, 208, 0.8);
+            opacity: 0.8;
+            padding: 18px;
+            height: 125px;
+            border-radius: 12px;
+            margin: 10px;
+            width: 33%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+
+            
+
+            .ica{
+                border-radius: 7px;
+                background: rgb(156, 46, 175);
+                width: 35px;
+                height: 35px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                .icona{
+                    color: white;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            .number{
+                color: white;
+                .clr{
+                    color:#ffffff;
+                }
+            }
+        }
+        .total:hover{
+            background-color: rgba(185, 57, 208, 0.8);
+            opacity: 0.8;
+            padding: 18px;
+            height: 150px;
+            border-radius: 12px;
+            margin: 10px;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            color: #c7badf;
+
+            
+
+            .ica{
+                border-radius: 7px;
+                background: rgb(156, 46, 175);
+                width: 35px;
+                height: 35px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                .icona{
+                    color: white;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            .number{
+                color: white;
+                .clr{
+                    color:#3f0f97;
+                }
+            }
+        }
+        .jforu{
+            background-color: rgba(20,145,222,0.8);
+            opacity: 0.8;
+            padding: 18px;
+            height: 125px;
+            border-radius: 12px;
+            margin: 10px;
+            width: 33%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff;
+
+            
+
+            .ic{
+                border-radius: 5px;
+                background: #31186460;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                .icon{
+                    color: white;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            .number{
+                color: white;
+                .clr{
+                    color:#ffffff;
+                }
+            }
+        }
+        .jforu:hover{
+            background-color: rgba(20,145,222,0.8);
+            opacity: 0.8;
+            padding: 18px;
+            height: 150px;
+            border-radius: 12px;
+            margin: 10px;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            color: #c7badf;
+
+            
+
+            .ic{
+                border-radius: 5px;
+                background: #31186460;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                .icon{
+                    color: white;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            .number{
+                color: white;
+                .clr{
+                    color:#3f0f97;
+                }
+            }
+        }
+        
+    }
+    .chrt{
+        margin: 10px;
+        padding: 3px;
+        border-radius: 8px;
+        background: #fff;
+        border-style: dashed;
+        border-color: #92a8d1;
+    }
+
+    .graph{
+        
+    }
+}

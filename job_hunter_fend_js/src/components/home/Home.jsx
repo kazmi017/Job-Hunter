@@ -9,8 +9,7 @@ class Home extends Component {
         return (
           <div className="main">
       <div className="bar">
-          <div className="logo">logo</div>
-          <div className="menus">menus</div>
+          <div className="logo"></div>
           <div className="join">
             <a  href="/join" className="jj" title="Join"><ImUserPlus /></a>
             
@@ -26,7 +25,7 @@ class Home extends Component {
             <div className="jbtn">
               <div className="join">
               <a  href="/join" className="a" title="Join"><i><ImUserPlus /></i> Join</a>
-              <a href="/" className="a" title="Post"><i ><BsFillCloudUploadFill /></i> Upload</a>
+              <a href="/" className="a" title="Post"><i ><BsFillCloudUploadFill /></i> Create CV</a>
               </div >
             </div>
           </div>
@@ -59,8 +58,8 @@ class Home extends Component {
             
           </div>
           <div className="utxt">
-            <h4>Upload</h4>
-            <p>Post your Curriculum Vitae (CV) To Tell Us About Your skills, preferences etc. We'll Quickly Match You With The Right gigs.</p>
+            <h4>Create CV</h4>
+            <p>Create your Curriculum Vitae (CV) To Tell Us About Your skills, preferences etc. We'll Quickly Match You With The Right gigs.</p>
           </div>
         </div>
         <div className="search">
