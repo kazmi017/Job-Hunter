@@ -3,13 +3,19 @@ import './Home.scss'
 import { Chart } from "react-google-charts";
 import { ImUserPlus } from 'react-icons/im';
 import { BsFillCloudUploadFill } from 'react-icons/bs';
+import { IoMdPaper } from "react-icons/io";
 
 class Home extends Component {
     render() {
         return (
           <div className="main">
       <div className="bar">
-          <div className="logo"></div>
+      <a href="/">
+                    <div className="logoholder">
+                        <div className="logo"><IoMdPaper className="logoIC"/></div>
+                        <b className="lname">JOB HUNTER</b>
+                    </div>
+                    </a>
           <div className="join">
             <a  href="/join" className="jj" title="Join"><ImUserPlus /></a>
             

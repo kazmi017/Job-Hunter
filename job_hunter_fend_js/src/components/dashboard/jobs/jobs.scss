@@ -1,0 +1,43 @@
+.job{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .r1{
+        margin-top: 5px;
+        width: 50%;
+        text-align: center;
+        font-weight: bolder;
+        .jwidg{
+            border-radius:15px 20px 15px 0px ;
+            margin-left: 20px;
+            padding-top: 15px;
+            height: 80px;
+            width: 80%;
+            background-color: rgba(144, 35, 163, 0.8);
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            border-bottom: 4px solid #e6e9ec;
+        }
+    }
+    .r2{
+        margin-top: 5px;
+        width: 30%;
+        text-align: center;
+        font-weight: bolder;
+        position: fixed;
+        right: 10%;
+        
+        .disc{
+            margin-top: 20px;
+            padding: 10px;
+            height: max-content;
+            background-color: rgba(20,145,222,0.8);
+            text-align: center;
+            border-radius: 7px;
+            color: white;
+            font-weight: bold;
+
+        }
+    }
+}

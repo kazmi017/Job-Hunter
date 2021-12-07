@@ -13,6 +13,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        border-bottom: 1px solid #6d767e;
         
 
         .logoholder{
@@ -150,6 +151,8 @@
         .navbar{
             width: 33%;
             height: 600px;
+            border-radius: 0px 4px 0px 0px;
+            border-right: 1px solid #6d767e;
             .menu{
                 margin-top: 10px;
                 display: flex;
@@ -161,9 +164,9 @@
                     align-self: center;
                     width: 90%;
                     padding: 4px;
-                    border-radius: 12px;
                     color: rgba(68, 68, 68, 0.8);
                     font-weight: lighter;
+                    border-bottom: 1px solid #6d767e;
                 }
                 .c:hover{
                     padding: 4px;
@@ -174,6 +177,7 @@
                     color: rgb(139, 38, 156);
                     cursor: progress;
                     font-weight: normal;
+                    border-bottom: 1px solid #ffffff;
                 }
                 
                 
@@ -182,7 +186,8 @@
         .ground{
             border-radius: 12px;
             width: 100%;
-            background: #e3f2fd;
+            background: #f3f3f3;
+            margin: 5px;
         }
         
     }
