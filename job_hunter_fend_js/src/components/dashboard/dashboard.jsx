@@ -6,16 +6,19 @@ import { MdPieChart, MdSearch,MdInfo, MdCreate,MdPermIdentity,MdDesktopMac } fro
 import { IoMdPaper } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import CV from './cv/cv.jsx';
+import {useSelector} from 'react-redux'
+import { selectUser } from '../../features/userSlice';
 
 
-class Dashboard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          page: <Dboard/>
-        };
-      }
-    render() {
+function Dashboard (){
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //       page: <Dboard/>
+    //     };
+    //     const data =useSelector(selectUser)
+    //   }
+
         return (
             <div className="mainD">
                <div className="appbar">
@@ -56,7 +59,6 @@ class Dashboard extends Component {
                
             </div>
         );
-    }
 }
 
 export default Dashboard;
