@@ -7,3 +7,18 @@ class Jobser(serializers.ModelSerializer):
     class Meta:
         model=Job
         fields='__all__'
+
+class CVser(serializers.ModelSerializer):
+    class Meta:
+        model=CV
+        fields='__all__'
+
+class USERser(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields='__all__'
+
+class Loginser(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields='__all__'

@@ -4,15 +4,18 @@
     justify-content: space-between;
     .r1{
         margin-top: 5px;
-        width: 50%;
+        width: 100%;
         text-align: center;
         font-weight: bolder;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         .jwidg{
             border-radius:15px 20px 15px 0px ;
             margin-left: 20px;
             padding-top: 15px;
-            height: 80px;
-            width: 80%;
+            height: 120px;
+            width: 25%;
             background-color: rgba(144, 35, 163, 0.8);
             text-align: center;
             color: white;
@@ -25,7 +28,8 @@
         width: 30%;
         text-align: center;
         font-weight: bolder;
-        position: fixed;
+        position: sticky;
+        top: 0;
         right: 10%;
         
         .disc{

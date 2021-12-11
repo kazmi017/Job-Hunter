@@ -1,61 +1,56 @@
 import requests
 from bs4 import BeautifulSoup
-import json
+import datetime
 
-data={"title":""}
+x = datetime.datetime.now()
 
 
-def p1():
-    URL = "https://pk.linkedin.com/jobs/search?keywords=&location=Pakistan&locationId=&geoId=101022442&f_TPR=&f_PP=102866583&position=1&pageNum=0"
+
+data={
+    "title":"",
+    "description":"",
+    "company":"",
+    "location":"",
+    "link":"",
+    "salary":"not-specified",
+    "time":x.strftime("%d-%b-%y")
+
+}
+
+
+
+# returns clean search with the parameters passed
+def scrape_jobs():
+    URL = f"http://api.scraperapi.com?api_key=f9da680341c9f31e2293611231a73bf7&url=https://pk.indeed.com/jobs?q=android%20developer&l=Islamabad"
     page = requests.get(URL)
-
-
-
+    # print(page.text)
     soup = BeautifulSoup(page.content, "html.parser")
-    results = soup.find(id="main-content")
-    job_elements = results.find_all("div", class_="base-card base-card--link base-search-card base-search-card--link job-search-card")
+    results = soup.find(id="resultsCol")
+    result=results.find(id="mosaic-zone-jobcards")
+    # print(result.text)
+    job_elems = result.find_all("div", class_="job_seen_beacon")
+    for job_elem in job_elems:
+        # keep in mind that each job_elem is another BeautifulSoup object!
+        title_elem = job_elem.find("div", class_="heading4 color-text-primary singleLineTitle tapItem-gutter")
+        title_elem=str(title_elem.text).replace("new","")
+        data["title"]=title_elem
+        print(data["title"])
+    #     company_elem = job_elem.find("a", class_="hidden-nested-link")
+    #     data["company"]=str(company_elem.text).strip()
+    #     location_elem = job_elem.find("span", class_="job-search-card__location")
+    #     data["location"]=str(location_elem.text).strip()
+    #     link_elem=job_elem.find("a", class_="base-card__full-link")['href']
+    #     data["link"]=str(link_elem)
+    #     # print(data)
+    #     page = requests.get(link_elem)
+    #     soup = BeautifulSoup(page.content, "html.parser")
+    #     results_new = soup.find(id="main-content")
+    #     # print(results_new)
+    #     link_body = results_new.find("div", class_="show-more-less-html__markup show-more-less-html__markup--clamp-after-5")
+    #     # description_elem = link_body.find_all("p")
+    #     # print(link_body.text)
+    #     data["description"]=str(link_body.text).strip().replace("\u00a0","").replace("\u0101m","")
+    #     j=Job(JobTitle=data["title"],JobDescription=data["description"],Salary=data["salary"],URL=data["link"],Province=data["location"],City=data["location"],Address=data["location"],DatePosted=data["time"])
+    #     j.save()
 
-
-    for job_element in job_elements:
-        title_element = job_element.find("h3", class_="base-search-card__title")
-        company_element = job_element.find("h3", class_="base-search-card__subtitle")
-        location_element = job_element.find("p", class_="job-search-card__location")
-        data["title"]=str(title_element.text).strip()
-
-
-def p2():
-    URL = "https://pk.linkedin.com/jobs/search?keywords=flutter&location=Pakistan&locationId=&geoId=101022442&f_TPR=&f_PP=102866583&position=1&pageNum=1"
-    page = requests.get(URL)
-
-    soup = BeautifulSoup(page.content, "html.parser")
-    results = soup.find(id="main-content")
-    job_elements = results.find_all("div", class_="base-card base-card--link base-search-card base-search-card--link job-search-card")
-
-
-    for job_element in job_elements:
-        title_element = job_element.find("h3", class_="base-search-card__title")
-        company_element = job_element.find("h3", class_="base-search-card__subtitle")
-        location_element = job_element.find("p", class_="job-search-card__location")
-        data["title"]=str(title_element.text).strip()
-
-def p3():
-    URL = "https://pk.linkedin.com/jobs/search?keywords=react&location=Pakistan&locationId=&geoId=101022442&f_TPR=&f_PP=102866583&position=1&pageNum=2"
-    page = requests.get(URL)
-    
-    
-    
-    soup = BeautifulSoup(page.content, "html.parser")
-    results = soup.find(id="main-content")
-    job_elements = results.find_all("div", class_="base-card base-card--link base-search-card base-search-card--link job-search-card")
-    
-    
-    for job_element in job_elements:
-        title_element = job_element.find("h3", class_="base-search-card__title")
-        company_element = job_element.find("h3", class_="base-search-card__subtitle")
-        location_element = job_element.find("p", class_="job-search-card__location")
-        data["title"]=str(title_element.text).strip()
-
-p1()
-p2()
-p3()
-print(data)
+scrape_jobs()

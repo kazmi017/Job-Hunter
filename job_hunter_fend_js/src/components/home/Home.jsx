@@ -79,55 +79,8 @@ class Home extends Component {
         </div>
         </div>
 
-        <div className="dpie">
-        <Chart className="pie1"
-          chartType="PieChart"
-          loader={<div>Loading Chart</div>}
-          data={[
-          ['Task', 'Hours per Day'],
-          ['React', 11],
-          ['Flutter', 2],
-          ['Python', 2],
-          ['SEO', 2],
-          ['iOS', 7],
-          ]}
-        />
-        <Chart className="pie2"
-          chartType="PieChart"
-          loader={<div>Loading Chart</div>}
-          data={[
-          ['Task', 'Hours per Day'],
-          ['React', 11],
-          ['Flutter', 2],
-          ['Python', 2],
-          ['SEO', 2],
-          ['iOS', 7],
-          ]}
-        />
-        <Chart className="pie3"
-          chartType="PieChart"
-          loader={<div>Loading Chart</div>}
-          data={[
-          ['Task', 'Hours per Day'],
-          ['React', 11],
-          ['Flutter', 2],
-          ['Python', 2],
-          ['SEO', 2],
-          ['iOS', 7],
-          ]}
-        />
-        </div>
         
       </div>
-      
-    <div className="footer">
-      <div className="who">
-        <h5>Who we are?</h5>
-        <p>We are a team ....</p>
-      </div>
-      <div className="usr">For Users</div>
-      <div className="info">Information</div>
-    </div>
       
     </div>
       

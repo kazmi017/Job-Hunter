@@ -24,7 +24,6 @@ class CV(models.Model):
         return self.Name
 
 class Job(models.Model):
-    JobID = models.IntegerField(primary_key=True)
     JobTitle = models.CharField(max_length=30)
     JobDescription = models.CharField(max_length=30)
     Salary = models.CharField(max_length=30)
@@ -43,7 +42,7 @@ class User(models.Model):
     Email = models.CharField(max_length=30)
     Password = models.CharField(max_length=30)
     PhoneNumber = models.CharField(max_length=30)
-    isCvCreated = models.IntegerField
+    isCvCreated = models.IntegerField()
 
     def __str__(self):
         return self.Username

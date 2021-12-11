@@ -1,51 +1,67 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../features/userSlice";
-import loginImg from "../../login.svg";
+import { useNavigate } from "react-router-dom";
 
 
 export function Login(props) {
 
-   const [email,setEmail]= useState("");
-   const [password,setPassword]= useState("");
+  const [formData, setFormData] = useState({
+    Username:'',
+    Password: '',
+  });
+
+  let nav = useNavigate();
+
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
    const dispatch=useDispatch();
 
-   const URL='https://jobhunter5758.000webhostapp.com/login.php'
+   const URL='http://ammarkazmi5124.pythonanywhere.com/login/'
 
 
   const handleSubmit=(e)=>{
-
+    const body = JSON.stringify(formData);
     e.preventDefault();
-
+    console.log('my data::: ',body)
+    fetch(URL, {
+      method: 'POST',
+      body: body
+  }).then(res => res.json())
+  .then((result)=>{
+    if (result!=="Authentication Failed"){
     dispatch(login({
-      isloggedIn:true,
-    }));
+    email:result,
+    isloggedIn:true,
+  }))
+  nav("/dashboard");
+}
+}
+)
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+
    };
 
 
 
     return (
-      <div className="base-container" ref={props.containerRef}>
+      <div className="mainL" ref={props.containerRef}>
         <div className="header">Login</div>
         
         <form onSubmit={(e) => handleSubmit(e)}> 
         <div className="content">
-        
-          <div className="image">
-            <img src={loginImg} />
-          </div>
-          
           <div className="form">
             <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input type="text" name="email" placeholder="Email" 
-              onChange={(e)=> setEmail({email: e.target.value}) }/>
+              <label htmlFor="Username">Username</label>
+              <input type="text" name="Username" placeholder="Username like Pluto123" 
+              onChange={e => onChange(e)}/>
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" placeholder="password"
-              onChange={(e)=> setPassword({password:e.target.value})} />
+              <label htmlFor="Password">Password</label>
+              <input type="password" name="Password" placeholder="password"
+              onChange={e => onChange(e)} />
               
             </div>
           </div>

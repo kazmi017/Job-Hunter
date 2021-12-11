@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {  useState } from 'react';
 import "./dashboard.scss";
 import Dboard from './dboard/dboard';
 import Jobs from './jobs/jobs';
@@ -18,6 +18,10 @@ function Dashboard (){
     //     };
     //     const data =useSelector(selectUser)
     //   }
+
+    const [page,setP]=useState(<Dboard/>);
+    const data =useSelector(selectUser);
+    
 
         return (
             <div className="mainD">
@@ -42,19 +46,19 @@ function Dashboard (){
                     <div className="navbar">
                         <div className="menu">
                             {/* <h4 className="heading">Dashboard</h4> */}
-                            <div className="c space" onClick={() => this.setState({ page: <Dboard/> })} > <MdPieChart className="icons"/> Dashboard</div>
+                            <div className="c space" onClick={() => setP(<Dboard/>)} > <MdPieChart className="icons"/> Dashboard</div>
                             {/* <br />
                             <h4 className="heading">Jobs</h4> */}
-                            <div className="c space" onClick={() => this.setState({ page: <Jobs/> })} > <MdDesktopMac className="icons"/> Jobs</div>
+                            <div className="c space" onClick={() => setP(<Jobs/>)} > <MdDesktopMac className="icons"/> Jobs</div>
                             {/* <br />
                             <h4 className="heading">About</h4> */}
-                            <div className="c space" onClick={() => this.setState({ page: <CV/> })} > <MdInfo className="icons"/> About Us</div>
+                            <div className="c space" onClick={() => setP(<CV/>)} > <MdInfo className="icons"/> About Us</div>
                             {/* <br />
                             <h4 className="heading">CV</h4> */}
-                            <div className="c space" onClick={() => this.setState({ page: <CV/> })} > <MdCreate className="icons"/> Create CV</div>
+                            <div className="c space" onClick={() => setP(<CV/>)} > <MdCreate className="icons"/> Create CV</div>
                         </div>
                     </div>
-                    <div className="ground">{this.state.page}</div>
+                    <div className="ground">{page}</div>
                 </div>
                
             </div>

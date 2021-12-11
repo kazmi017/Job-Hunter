@@ -24,8 +24,15 @@ function Jobs() {
     // Note: the empty deps array [] means
     // this useEffect will run once
     // similar to componentDidMount()
+
+   const data = new FormData();
+
+    data.append('title',"Android Developer");
+    data.append('city',"Rawalpindi");
     useEffect(() => {
-      fetch("http://127.0.0.1:8000/jobs/")
+      fetch("http://127.0.0.1:8000/jobs/",{
+        method: 'GET'
+    })
         .then(res => res.json())
         .then(
           (result) => {
@@ -50,7 +57,6 @@ function Jobs() {
       return (
         <div className="job">
             <div className="r1">
-                <i>Jobs</i>
           {items.map(item => (
             <div className="jwidg" onClick={() => setAllValues({
                 JobID: item.JobID,
@@ -68,7 +74,7 @@ function Jobs() {
             </div>
           ))}
           </div>
-          <div className="r2">
+          {/* <div className="r2">
               <i>Discription</i>
               <div className="disc">
                 Title:  {allValues.JobTitle}<br /> 
@@ -78,7 +84,7 @@ function Jobs() {
                 City:  {allValues.City}<br /> 
 
               </div>
-          </div>
+          </div> */}
         </div>
       );
     }
