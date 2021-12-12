@@ -4,7 +4,10 @@ import {createSlice} from "@reduxjs/toolkit";
 export const userslice= createSlice({
     name:"users",
     initialState:{
-        user:null
+        user:{
+            email:"none",
+            isloggedIn:false,
+        }
     },
     reducers:{
         login: (state,action) =>{

@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useState, useEffect } from 'react';
 import "./dashboard.scss";
 import Dboard from './dboard/dboard';
 import Jobs from './jobs/jobs';
@@ -21,7 +21,11 @@ function Dashboard (){
 
     const [page,setP]=useState(<Dboard/>);
     const data =useSelector(selectUser);
-    
+
+    useEffect(() => {
+        console.log('new dddd',data)
+      });
+
 
         return (
             <div className="mainD">
