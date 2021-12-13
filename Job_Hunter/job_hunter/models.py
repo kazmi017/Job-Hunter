@@ -17,13 +17,14 @@ class CV(models.Model):
     UniSubject = models.CharField(max_length=30)
     UniAttended = models.CharField(max_length=30)
     UniMarks = models.CharField(max_length=30)
-    Skills = models.CharField(max_length=30)
+    Skills = models.CharField(max_length=100)
     Experience = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.Name
+        return self.Email
 
 class Job(models.Model):
+    Skills=models.CharField(max_length=30)
     JobTitle = models.CharField(max_length=30)
     JobDescription = models.CharField(max_length=30)
     Salary = models.CharField(max_length=30)
@@ -34,7 +35,7 @@ class Job(models.Model):
     DatePosted = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.JobTitle
+        return self.Skills
 
 
 class User(models.Model):

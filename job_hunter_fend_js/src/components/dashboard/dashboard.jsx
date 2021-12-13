@@ -23,7 +23,7 @@ function Dashboard (){
     const data =useSelector(selectUser);
 
     useEffect(() => {
-        console.log('new dddd',data)
+        console.log(localStorage.getItem("user"))
       });
 
 

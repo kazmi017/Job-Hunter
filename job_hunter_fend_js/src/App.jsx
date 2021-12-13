@@ -13,12 +13,13 @@ import {store} from "./store/store"
 
 function App() {
 
-  const dispatch=useDispatch();
+  // const dispatch=useDispatch();
 
-  const data =useSelector(selectUser);
-  useEffect(() => {
-    console.log(store.getState)
-  });
+  // const data =useSelector(selectUser);
+  // useEffect(() => {
+  //   var str=store.getState()
+  //   console.log(store.getState()["user"]["email"]);
+  // });
 
 
   return <Router>
@@ -27,7 +28,7 @@ function App() {
       {/* <Route path="/join" element={<Join/>} /> */}
       <Route path="/dashboard" element={<Dashboard/>} />
       <Route path="/join"
-        element={store.getState.isloggedIn===true ? <Dashboard/> : <Join /> }/>
+        element={store.getState()["user"]["isloggedIn"]===true ? <Dashboard/> : <Join /> }/>
     </Routes>
   </Router>
 }

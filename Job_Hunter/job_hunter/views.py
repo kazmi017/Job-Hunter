@@ -8,17 +8,18 @@ from .Scrapper.sc import scrape_jobs
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from django.views.decorators.csrf import csrf_exempt
+import json
 # HAVE TO ADD COMPANY NAME<<<ASK N>>>
 
 def scrap(request):
     if request.method == 'GET':
         positions=CV.objects.values('Skills').distinct()
         for position in positions:
-            skills=(str(position['Skills']).lower().split(", "))
+            skills=(str(position['Skills']).split(", "))
             for skill in skills:
-                scrape_jobs(skill.replace(" ","+"), "islamabad")
-        job= CV.objects.all()
-        serializer = CVser(job, many=True)
+                scrape_jobs(skill.replace(" ","+").lower(), "islamabad",skill)
+        job= Job.objects.all()
+        serializer = Jobser(job, many=True)
         return JsonResponse(serializer.data, safe=False)
 
 def joblist(request):
@@ -64,4 +65,26 @@ def login(request):
         else:
             return JsonResponse("Authentication Failed",safe=False)
 
+@csrf_exempt
+def jobforu(request):
+    if request.method == 'POST':
+        data=JSONParser().parse(request)
+        skill=data
+        print(skill)
+        j=Job.objects.filter(Skills=skill)
+        # __contains
+        serializer=Jobser(j,many=True)
+            
+        return JsonResponse(serializer.data,safe=False)
 
+@csrf_exempt
+def jobs(request):
+    if request.method == 'POST':
+        data=JSONParser().parse(request)
+        em=data['Email']
+        q= CV.objects.filter(Email=em).first()
+        serializer = CVser(q)
+        print(serializer.data['Skills'].split(", "))
+        skills=serializer.data['Skills'].split(", ")
+            
+        return JsonResponse(skills,safe=False)
