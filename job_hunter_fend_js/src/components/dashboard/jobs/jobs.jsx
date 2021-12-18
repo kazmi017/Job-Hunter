@@ -6,7 +6,7 @@ function Jobs() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
-    const [itemsk, setSk] = useState([]);
+    const [itemskill, setSk] = useState([]);
     const [skill,setSkill]=useState("");
     var [description,setD] = useState(["Here the description of jobs will be shown."]);
     const [allValues, setAllValues] = useState({
@@ -19,12 +19,13 @@ function Jobs() {
         City: '',
         Date:'',
      });
-     var data={"Email":store.getState()["user"]["email"]}
+     var data=store.getState()["user"]["email"]
+     var skill_data={"Skill":skill}
   
 
     useEffect(() => {
 
-      fetch("http://127.0.0.1:9000/skill/",{
+      fetch("http://ammarkazmi5124.pythonanywhere.com/skill/",{
         method: 'POST',
         body: JSON.stringify(data)
     })
@@ -33,35 +34,42 @@ function Jobs() {
           (result) => {
             setSk(result)
             // setSkill(result[0])
-            console.log(skill)
+            console.log(result)
             
           }
         )
 
 
 
-      fetch("http://127.0.0.1:9000/job/",{
+      fetch("http://ammarkazmi5124.pythonanywhere.com/job/",{
         method: 'POST',
-        body: JSON.stringify(skill)
+        body: JSON.stringify(skill_data)
     })
         .then(res => res.json())
         .then(
           (result) => {
             setIsLoaded(true);
             setItems(result);
-            // console.log(result)
+            try{
+            // console.log("hello ",result[0]["id"])
             setAllValues(
               {
-                JobID: result["JobID"],
-                JobTitle: result["JobTitle"],
-                JobDescription: result["JobDescription"],
-                Salary: result["Salary"],
-                URL: result["URL"],
-                Province: result["Province"],
-                City: result["City"],
+                JobID: result[0]["id"],
+                JobTitle: result[0]["JobTitle"],
+                JobDescription: result[0]["JobDescription"],
+                Salary: result[0]["Salary"],
+                URL: result[0]["URL"],
+                Province: result[0]["Province"],
+                City: result[0]["City"],
 
             }
             )
+          }
+            catch(e){
+              // console.log(e)
+            }
+            
+            console.log(allValues)
           },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
@@ -84,12 +92,15 @@ function Jobs() {
     } else {
       return (
         <div className="m">
-          <div className="skills">{skill}</div>
-          {itemsk.map(itemskill => (
-            <div className="jobtiles" onClick={()=> {setSkill(itemskill);}}>
+          <div className="skill">
+          {itemskill.map(itemskill => (
+            <div className="skilltiles" onClick={()=> {setSkill(itemskill);}}>
                 {itemskill} <br />
             </div>
-          ))}
+          ))
+          }
+          <div className="clear" onClick={()=> {setSkill("");}}>clear</div>
+          </div>
           <div className="job">
             <div className="r1">
           {items.map(item => (

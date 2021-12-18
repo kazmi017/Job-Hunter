@@ -17,8 +17,8 @@ class CV(models.Model):
     UniSubject = models.CharField(max_length=30)
     UniAttended = models.CharField(max_length=30)
     UniMarks = models.CharField(max_length=30)
-    Skills = models.CharField(max_length=100)
-    Experience = models.CharField(max_length=30)
+    Skills = models.CharField(max_length=1000)
+    Experience = models.CharField(max_length=100)
 
     def __str__(self):
         return self.Email

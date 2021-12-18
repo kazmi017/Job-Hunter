@@ -13,10 +13,20 @@ class CVser(serializers.ModelSerializer):
         model=CV
         fields='__all__'
 
+class CVserl(serializers.ModelSerializer):
+    class Meta:
+        model=CV
+        fields='__all__'
+
 class USERser(serializers.ModelSerializer):
     class Meta:
         model=User
         fields='__all__'
+
+class Statser(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['isCvCreated']
 
 class Loginser(serializers.ModelSerializer):
     class Meta:
