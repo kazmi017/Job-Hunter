@@ -1,84 +1,193 @@
-import React, { Component } from 'react';
+import React, { useState,useEffect } from "react";
 import "./cv.scss"
-class CV extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {value: ''};
+import {store} from "../../../store/store"
+
+
+function CV(){
+  // store.getState()["user"]["email"]
+  const [button,setBtn]=useState("Submit")
+  const [formData, setFormData] = useState({
+    'Email' :'kazmi82033@gmail.com',
+    'Name':'',
+    'PhoneNumber':'',
+    'Address':'',
+    'Objective':'',
+    'SchoolSubject':'',
+    'SchoolAttended':'',
+    'SchoolMarks':'',
+    'ClgSubject':'',
+    'ClgAttended':'',
+    'ClgMarks':'',
+    'UniSubject':'',
+    'UniAttended':'',
+    'UniMarks':'',
+    'Skills':'',
+    'Experience':'',
+  });
+  const onChange = e => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
+
     
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+  const handleSubmit=(e)=>{
+        console.log(formData)
+        e.preventDefault();
+
+        if(button=="Submit"){ 
+        console.log("Submit")
+        fetch("http://127.0.0.1:8000/cv/",{
+        method: 'POST',
+        body: JSON.stringify(formData)
+    })
+        .then(res => res.json())
+        .then(
+          (result) => {
+            console.log(result)
+            
+          }
+        )
+  }
+        if(button=="Update"){
+          console.log("Update")
+        fetch("http://127.0.0.1:8000/cv/",{
+        method: 'POST',
+        body: JSON.stringify(formData)
+    })
+        .then(res => res.json())
+        .then(
+          (result) => {
+            console.log(result)
+            
+          }
+        )
+        }
+
+
       }
-    
-      handleChange(event) {
-        this.setState({value: event.target.value});
-      }
-    
-      handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
-      }
-    render() {
+
+
+      useEffect(() => {
+
+        fetch("http://ammarkazmi5124.pythonanywhere.com/cvstatcheck/",{
+          method: 'POST',
+          body: JSON.stringify(formData)
+      })
+          .then(res => res.json())
+          .then(
+            (result) => {
+              if(result==1){
+                setBtn("Update")
+              console.log(result)
+              fetch("http://ammarkazmi5124.pythonanywhere.com/cvdet/",{
+          method: 'POST',
+          body: JSON.stringify(formData)
+      })
+          .then(res => res.json())
+          .then(
+            (result) => {
+             setFormData(result)
+              console.log(result)
+              
+            }
+          )
+
+            
+            }
+              
+            }
+          )
+  
+  
+  
+        
+  
+          
+        
+        
+      }, [])
         return (
             <div className="row" >
-                <form onSubmit={this.handleSubmit} className="mainCv">
-                   <label className="labels">
-                        Name: <br />
-                        
-                     <input className="labels border" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label >
-                   <label className="labels">
-                     Email:<br />
-                     
-                     <input className="labels border" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label>
-                   <label className="labels">
-                     Phone#:<br />
-                     
-                     <input className="labels border" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label>
-                   <label className="labels">
-                     Address:<br/>
-                     
-                     <textarea className="labels border address" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label>
-                   <label className="labels">
-                     Permanent Address:<br/>
-                     
-                     <textarea className="labels border address" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label>
+                <form onSubmit={(e) => handleSubmit(e)} className="mainCv">
+                  <div className="s1" >
+                  <label htmlFor="Name">Name</label>
+                  <input className="search" type="text" value={formData["Name"]} name="Name" placeholder="Name"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="Email">Email</label>
+                  <input className="search" type="text" value={formData["Email"]} name="Email" placeholder="Email"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="PhoneNumber">PhoneNumber</label>
+                  <input className="search" type="text" value={formData["PhoneNumber"]} name="PhoneNumber" placeholder="PhoneNumber"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="Address">Address</label>
+                  <textarea className="search" type="text" value={formData["Address"]} name="Address" placeholder="Address"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="SchoolSubject">School Subject</label>
+                  <input className="search" type="text" value={formData["SchoolSubject"]} name="SchoolSubject" placeholder="SchoolSubject"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="SchoolAttended">School Attended</label>
+                  <input className="search" type="text" value={formData["SchoolAttended"]} name="SchoolAttended" placeholder="School Attended"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="SchoolMarks">School Marks</label>
+                  <input className="search" type="text" value={formData["SchoolMarks"]} name="SchoolMarks" placeholder="School Marks"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="ClgSubject">College Subject</label>
+                  <input className="search" type="text" value={formData["ClgSubject"]} name="ClgSubject" placeholder="College Subject"
+                  onChange={e => onChange(e)} />
+                  
+
+                  <label  htmlFor="ClgAttended">College Attended</label>
+                  <input className="search" type="text" value={formData["ClgAttended"]} name="ClgAttended" placeholder="College Subject"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="ClgMarks">College Marks</label>
+                  <input className="search" type="text" value={formData["ClgMarks"]} name="ClgMarks" placeholder="College Marks"
+                  onChange={e => onChange(e)} />
+
+                  </div>
+                  <div className="s2">
+
+                  
+
+                  <label  htmlFor="UniSubject">University Subject</label>
+                  <input className="search" type="text" value={formData["UniSubject"]} name="UniSubject" placeholder="University Subject"
+                  onChange={e => onChange(e)} />
+                  
+
+                  <label  htmlFor="UniAttended">University Attended</label>
+                  <input className="search" type="text" value={formData["UniAttended"]} name="UniAttended" placeholder="University Attended"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="UniMarks">University Marks</label>
+                  <input className="search" type="text" value={formData["UniMarks"]} name="UniMarks" placeholder="University Marks"
+                  onChange={e => onChange(e)} />
+                  
+
+                  <label  htmlFor="Objective">Career Objectives</label>
+                  <input className="search" type="text" value={formData["Objective"]} name="Objective" placeholder="Career Objectives"
+                  onChange={e => onChange(e)} />
                    
-                </form>
-                <form onSubmit={this.handleSubmit} className="mainCv">
-                   <label className="labels">
-                        Career Objectives: <br />
-                        
-                     <input className="labels border" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label >
-                   <label className="labels">
-                     Skills:<br />
-                     
-                     <input className="labels border" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label>
-                   <label className="labels">
-                     City:<br />
-                     
-                     <input className="labels border" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label>
-                   <label className="labels">
-                        Work Experience: <br />
-                        
-                     <input className="labels border" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label >
-                   <label className="labels">
-                     Last Job:<br />
-                     
-                     <input className="labels border" type="text" value={this.state.value} onChange={this.handleChange} />
-                   </label>
-                   <input type="submit" value="Submit" className="btn" />
+                   <label  htmlFor="Skills">Skills</label>
+                  <input className="search" type="text" value={formData["Skills"]} name="Skills" placeholder="Skills i.e Android Developer, React Developer "
+                  onChange={e => onChange(e)} />
+                  
+
+                  <label  htmlFor="Experience">Work Experience</label>
+                  <input className="search" type="text" value={formData["Experience"]} name="Experience" placeholder="Work Experience"
+                  onChange={e => onChange(e)} /> 
+                  
+                   <input className="search" type="submit" value={button} className="btn" />
+                   </div>
                 </form>
             </div>
         );
     }
-}
+
 
 export default CV;

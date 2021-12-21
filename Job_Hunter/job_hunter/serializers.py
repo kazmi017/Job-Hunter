@@ -23,6 +23,23 @@ class USERser(serializers.ModelSerializer):
         model=User
         fields='__all__'
 
+
+class UNser(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['Username']
+
+class Phser(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['PhoneNumber']
+
+class Pswser(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['Password']
+
+
 class Statser(serializers.ModelSerializer):
     class Meta:
         model=User

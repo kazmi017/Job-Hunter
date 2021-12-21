@@ -57,7 +57,8 @@ class Home extends Component {
             <h4>Signup</h4>
             <p>First You signup to aquire all the features of this website, if you already have an account.</p>
             <p></p>
-           </div>
+           </div> latest LTS version
+
         </div>
         <div className="upload">
           <div className="uimg">
@@ -81,6 +82,7 @@ class Home extends Component {
 
         
       </div>
+      
       
     </div>
       

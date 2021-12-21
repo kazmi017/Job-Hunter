@@ -25,7 +25,7 @@ data={
 # returns clean search with the parameters passed
 def scrape_jobs(position,location,skills):
     # print(position+location+skills)
-    URL = f"http://api.scraperapi.com?api_key=f9da680341c9f31e2293611231a73bf7&url=https://www.linkedin.com/jobs/search/?keywords={position}&location=islamabad"
+    URL = f"http://api.scraperapi.com?api_key=f9da680341c9f31e2293611231a73bf7&url=https://www.linkedin.com/jobs/search/?keywords={position}&location={location}"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
     results = soup.find(id="main-content")
@@ -37,13 +37,12 @@ def scrape_jobs(position,location,skills):
         company_elem = job_elem.find("a", class_="hidden-nested-link")
         data["company"]=str(company_elem.text).strip()
         location_elem = job_elem.find("span", class_="job-search-card__location")
-        data["location"]=str(location_elem.text).strip()
+        data["location"]=str(location_elem.text).strip().replace("ā","a")
         link_elem=job_elem.find("a", class_="base-card__full-link")['href']
         data["link"]=str(link_elem)
         # print(data)
-        time.sleep(5)
         page = requests.get("http://api.scraperapi.com?api_key=f9da680341c9f31e2293611231a73bf7&url="+link_elem)
-        
+
         soup = BeautifulSoup(page.content, "html.parser")
         results_new = soup.find(id="main-content")
         # print(results_new)

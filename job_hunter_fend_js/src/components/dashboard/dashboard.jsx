@@ -8,23 +8,57 @@ import { IoSettingsOutline } from "react-icons/io5";
 import CV from './cv/cv.jsx';
 import {useSelector} from 'react-redux'
 import { selectUser } from '../../features/userSlice';
+import { Dropdown, Selection } from 'react-dropdown-now';
+import 'react-dropdown-now/style.css';
+import JobsS from './jobsS/jobsearch';
 
 
 function Dashboard (){
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //       page: <Dboard/>
-    //     };
-    //     const data =useSelector(selectUser)
-    //   }
+    const [formData, setFormData] = useState({
+        Title:'',
+        City: '',
+        Skills:''
+      });
+      const[ch,setCh]=useState(1);
 
     const [page,setP]=useState(<Dboard/>);
     const data =useSelector(selectUser);
+    const [inputValue, setInputValue] = useState("");
 
-    useEffect(() => {
-        console.log(localStorage.getItem("user"))
-      });
+    const onChange = e => {
+        setInputValue(e.target.value);
+        if(ch==1){
+        setFormData({
+        Title:"",
+        City: "",
+        Skills:e.target.value
+    })
+}
+
+if(ch==2){
+    setFormData({
+    Title:e.target.value,
+    City: "",
+    Skills:""
+})
+}
+
+if(ch==3){
+    setFormData({
+    Title:"",
+    City: e.target.value,
+    Skills:""
+})
+}
+
+
+}
+
+      const handleSubmit=(e)=>{
+        e.preventDefault();
+        console.log('my data::: ',formData);
+        setP(<JobsS data={formData}/>)
+       };
 
 
         return (
@@ -38,7 +72,35 @@ function Dashboard (){
                     </a>
 
                     <div className="search">
-                    <div className="srch"><MdSearch className="serchIC"/></div> 
+                        <form class="wrapper" onSubmit={(e) => handleSubmit(e)}>
+                            
+                        <MdSearch className="serchIC"/>
+                            <input placeholder="Search by title, city and skills" type="search" class="search"
+                            value={inputValue}
+                             onChange={e => onChange(e)}
+                                
+                                />
+
+                                <Dropdown
+                                  placeholder="Filter"
+                                  className="dropdown"
+                                  options={['Skills', 'Title', 'City']}
+                                  value="one"
+                                  onSelect={(value) => {
+                                    setInputValue("");
+                                    if(value["label"]=="Skills"){
+                                      setCh(1)
+                                    }
+                                    if(value["label"]=="Title"){
+                                      setCh(2)
+                                    }
+                                    if(value["label"]=="City"){
+                                      setCh(3)
+                                    }
+                                  }}
+                                />  
+                                
+                        </form> 
                     </div>
                     <div className="right">
                     <div className="set"><IoSettingsOutline className="setIC"/></div>
