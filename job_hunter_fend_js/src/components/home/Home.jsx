@@ -27,7 +27,7 @@ class Home extends Component {
         <div className="grad">
           <div className="home_title">
             <h1>Find Your Career. You Deserve it.</h1>
-            <p>Quisque at magna maximus, gravida velit a, suscipit diam. Aenean fringilla ante quis nisl volutpat, sit amet mollis ante bibendum. Cras placerat metus elit, euismod tincidunt nunc laoreet ut. Interdum et malesuada fames ac ante.</p>
+            <p>Job Hunter will help you to find a Job that</p>
             <div className="jbtn">
               <div className="join">
               <a  href="/join" className="a" title="Join"><i><ImUserPlus /></i> Join</a>
@@ -82,7 +82,12 @@ class Home extends Component {
 
         
       </div>
-      
+      <div className="footer">
+        
+        <div className="usr">Conact Us</div>
+        <hr />
+        <div className="info">UseFul Links</div>
+      </div>
       
     </div>
       

@@ -14,7 +14,7 @@ import json
 
 def scrap(request):
     sk=tuple()
-    sk+=("Plumber","Android",)
+    sk+=("Plumber","Android","Accountant","Civil","Mechanical","Electrical","Teacher","Flutter")
     for sks in sk:
         scrape_jobs(sks.lower(), "Pakistan",sks)
     positions=CV.objects.values('Skills')
@@ -23,7 +23,7 @@ def scrap(request):
         for skill in skills:
             if skill not in sk:
                 sk+=(skill,)
-                scrape_jobs(skill.replace(" ","+").lower(), "Pakistan",skill)
+                scrape_jobs(sk.replace(" ","+").lower(), "Pakistan",skill)
     return JsonResponse(sk, safe=False)
 @csrf_exempt
 def joblist(request):
@@ -200,6 +200,9 @@ def saveCV(request):
         save=CVserl(data=data)
         if save.is_valid():
             save.save()
+            skills=data['Skills']
+            for skill in skills:
+                    scrape_jobs(skill.replace(" ","+").lower(), "Pakistan",skill)
             return JsonResponse(data['Name'], safe=False)
         else:
             return JsonResponse(save.errors, safe=False)
