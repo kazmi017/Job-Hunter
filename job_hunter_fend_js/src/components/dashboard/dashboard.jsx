@@ -1,19 +1,24 @@
 import React, {  useState, useEffect } from 'react';
 import "./dashboard.scss";
+import { useDispatch } from "react-redux"; 
+
+import { useNavigate } from "react-router-dom";
 import Dboard from './dboard/dboard';
 import Jobs from './jobs/jobs';
-import { MdPieChart, MdSearch,MdInfo, MdCreate,MdPermIdentity,MdDesktopMac } from "react-icons/md";
+import { MdPieChart, MdSearch,MdInfo, MdCreate,MdPermIdentity,MdDesktopMac,MdOutlineBrightnessHigh,MdOutlineNordicWalking } from "react-icons/md";
 import { IoMdPaper } from "react-icons/io";
-import { IoSettingsOutline } from "react-icons/io5";
 import CV from './cv/cv.jsx';
 import {useSelector} from 'react-redux'
 import { selectUser } from '../../features/userSlice';
 import { Dropdown, Selection } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
 import JobsS from './jobsS/jobsearch';
+import { login } from "../../features/userSlice";
 
 
 function Dashboard (){
+  let nav = useNavigate();
+  const dispatch=useDispatch();
     const [formData, setFormData] = useState({
         Title:'',
         City: '',
@@ -103,8 +108,20 @@ if(ch==3){
                         </form> 
                     </div>
                     <div className="right">
-                    <div className="set"><IoSettingsOutline className="setIC"/></div>
-                    <div className="user"><MdPermIdentity className="userIC"/></div>
+                    <div className="set" onClick={()=>{
+                      setP(<join/>)
+                    }}><MdOutlineBrightnessHigh className="setIC"/></div>
+                    <div className="user" onClick={()=>{
+                      dispatch(login(
+                        {
+                          email:"none",
+                          isloggedIn:false,
+                        }
+                      ))
+                      nav("/");
+                    }
+                    }><MdOutlineNordicWalking className="userIC"/></div>
+                    
                     </div>
                 </div>
 

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export function Login(props) {
 
   const [formData, setFormData] = useState({
-    Username:'',
+    Email:'',
     Password: '',
   });
 
@@ -23,7 +23,7 @@ export function Login(props) {
   const handleSubmit=(e)=>{
     const body = JSON.stringify(formData);
     e.preventDefault();
-    console.log('my data::: ',body)
+    console.log('my data::: ',formData)
     fetch(URL, {
       method: 'POST',
       body: body
@@ -31,7 +31,7 @@ export function Login(props) {
   .then((result)=>{
     if (result!=="Authentication Failed"){
     dispatch(login({
-    email:result,
+    email:formData['Email'],
     isloggedIn:true,
   }))
   nav("/dashboard");
@@ -54,8 +54,8 @@ export function Login(props) {
         <div className="content">
           <div className="form">
             <div className="form-group">
-              <label htmlFor="Username">Username</label>
-              <input type="text" name="Username" placeholder="Username like Pluto123" 
+              <label htmlFor="Email">Email</label>
+              <input type="text" name="Email" placeholder="Email like abc@pluto.com" 
               onChange={e => onChange(e)}/>
             </div>
             <div className="form-group">

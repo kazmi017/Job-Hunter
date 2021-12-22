@@ -42,11 +42,11 @@ const handleSubmit=(e)=>{
         .then((response) => response.json())
         .then((result)=>{
           if (result!=="Authentication Failed"){
-          dispatch(login({
-          email:result,
-          isloggedIn:true,
-          }))
-          nav("/dashboard");
+          // dispatch(login({
+          // email:formData['Email'],
+          // isloggedIn:true,
+          // }))
+          nav("/join");
         }
       }
       )

@@ -2,12 +2,14 @@ import React, { useState,useEffect } from "react";
 import "./cv.scss"
 import {store} from "../../../store/store"
 
-
 function CV(){
-  // store.getState()["user"]["email"]
+  
   const [button,setBtn]=useState("Submit")
+
+
+
   const [formData, setFormData] = useState({
-    'Email' :'kazmi82033@gmail.com',
+    'Email' :store.getState()["user"]["email"],
     'Name':'',
     'PhoneNumber':'',
     'Address':'',
@@ -35,7 +37,7 @@ function CV(){
 
         if(button=="Submit"){ 
         console.log("Submit")
-        fetch("http://127.0.0.1:8000/cv/",{
+        fetch("http://ammarkazmi5124.pythonanywhere.com/cv/",{
         method: 'POST',
         body: JSON.stringify(formData)
     })
@@ -43,13 +45,12 @@ function CV(){
         .then(
           (result) => {
             console.log(result)
-            
           }
         )
   }
         if(button=="Update"){
           console.log("Update")
-        fetch("http://127.0.0.1:8000/cv/",{
+        fetch("http://ammarkazmi5124.pythonanywhere.com/cvupdate/",{
         method: 'POST',
         body: JSON.stringify(formData)
     })
@@ -182,9 +183,10 @@ function CV(){
                   <input className="search" type="text" value={formData["Experience"]} name="Experience" placeholder="Work Experience"
                   onChange={e => onChange(e)} /> 
                   
-                   <input className="search" type="submit" value={button} className="btn" />
+                   <input  type="submit" value={button} className="btn" />
                    </div>
                 </form>
+                
             </div>
         );
     }

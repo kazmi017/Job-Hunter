@@ -23,7 +23,7 @@ function JobsS(props) {
 
 
 
-      fetch("http://127.0.0.1:8000/jobt/",{
+      fetch("http://ammarkazmi5124.pythonanywhere.com/jobt/",{
         method: 'POST',
         body: JSON.stringify(props.data)
     })
