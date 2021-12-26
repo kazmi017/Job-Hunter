@@ -27,11 +27,11 @@ class Home extends Component {
         <div className="grad">
           <div className="home_title">
             <h1>Find Your Career. You Deserve it.</h1>
-            <p>Job Hunter will help you to find a Job that</p>
+            <p>Simply create your CV and get ready to apply for a job that suits your skillset and interests in a best way. Job hunter provides you variety of Jobs according to skills, regions, cities and titles.</p>
             <div className="jbtn">
               <div className="join">
               <a  href="/join" className="a" title="Join"><i><ImUserPlus /></i> Join</a>
-              <a href="/" className="a" title="Post"><i ><BsFillCloudUploadFill /></i> Create CV</a>
+              <a href="/join" className="a" title="Post"><i ><BsFillCloudUploadFill /></i> Login</a>
               </div >
             </div>
           </div>
@@ -42,7 +42,7 @@ class Home extends Component {
     <div className="body">
         <div className="btitle">
         <h3>How It <span>Works?</span></h3>
-        <p>Description- Unknown yet</p>
+        <p>An efficient and time saving software that uses intelligent search techniques to maximize resource optimization.</p>
         <p></p>
         </div>
 
@@ -57,7 +57,7 @@ class Home extends Component {
             <h4>Signup</h4>
             <p>First You signup to aquire all the features of this website, if you already have an account.</p>
             <p></p>
-           </div> latest LTS version
+           </div> 
 
         </div>
         <div className="upload">

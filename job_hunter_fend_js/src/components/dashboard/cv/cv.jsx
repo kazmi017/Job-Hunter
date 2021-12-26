@@ -160,6 +160,9 @@ function CV(){
                   <input className="search" type="text" value={formData["UniSubject"]} name="UniSubject" placeholder="University Subject"
                   onChange={e => onChange(e)} />
                   
+                  <label  htmlFor="dob">Date of Birth</label>
+                  <input className="search" type="text" name="dob" placeholder="15 Novemeber 1997"
+                  onChange={e => onChange(e)} />
 
                   <label  htmlFor="UniAttended">University Attended</label>
                   <input className="search" type="text" value={formData["UniAttended"]} name="UniAttended" placeholder="University Attended"
