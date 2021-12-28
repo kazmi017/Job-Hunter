@@ -3,10 +3,13 @@ import { useDispatch } from "react-redux";
 import BarWave from "react-cssfx-loading/lib/BarWave";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../features/userSlice";
+import validator from 'validator'
 
 export function Register (props){
 
   const dispatch=useDispatch();
+
+  const [error, setError] = useState('')
 
 
   let nav = useNavigate();
@@ -20,6 +23,16 @@ export function Register (props){
     const[reg,setReg]=useState("Register")
 
    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+   const validateEmail = (e) => {
+    var email = e.target.value
+  
+    if (validator.isEmail(email)) {
+      setError('Valid Email :)')
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    } else {
+      setError('Enter valid Email!')
+    }
+  }
 
 
    const change=()=>{
@@ -41,13 +54,13 @@ const handleSubmit=(e)=>{
   } )
         .then((response) => response.json())
         .then((result)=>{
-          // console.error('result:', result);
-          nav("/");
-        
+          setError(result)
+          // nav("/");
+          setReg("Register")
       }
       )
         .catch((error) => {
-          console.error('Error:', error);
+          setError('ERROR: '+error)
         });
 
 
@@ -72,7 +85,7 @@ const handleSubmit=(e)=>{
             <div className="form-group">
               <label htmlFor="Email">Email</label>
               <input type="text" name="Email" placeholder="email" 
-             onChange={e => onChange(e)}
+             onChange={(e) => validateEmail(e)}
               />
             </div>
             <div className="form-group">
@@ -87,6 +100,10 @@ const handleSubmit=(e)=>{
               onChange={e => onChange(e)}
               />
             </div>
+            <span style={{
+              fontWeight: 'bold',
+              color: 'red',
+              }}>{error}</span>
           </div>
         </div>
         <div className="footer">

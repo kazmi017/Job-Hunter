@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Chart } from "react-google-charts";
 import "./dboard.scss";
+import {store} from "../../../store/store"
 import { MdFolderOpen ,MdLocalMall,MdOutlineLocalFireDepartment,MdOutlineApps,MdOutlineTrain} from "react-icons/md";import { IoMdGlobe,IoMdHeartHalf,IoMdHeart } from "react-icons/io";
 class Dboard extends Component {
     render() {
         return (
             <div className="main1">
-              Welcome Back,<i>USER123</i>
+              Welcome Back,<i>{store.getState()["user"]["username"]}</i>
                 <div className="stats">
                     <div className="total">
                     <div className="ica"><MdFolderOpen className="icona"/></div>

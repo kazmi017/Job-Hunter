@@ -14,6 +14,7 @@ import { Dropdown, Selection } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
 import JobsS from './jobsS/jobsearch';
 import { login } from "../../features/userSlice";
+import Settings from './settings/settings';
 
 
 function Dashboard (){
@@ -109,7 +110,7 @@ if(ch==3){
                     </div>
                     <div className="right">
                     <div className="set" onClick={()=>{
-                      setP(<join/>)
+                      setP(<Settings/>)
                     }}><MdOutlineBrightnessHigh className="setIC"/></div>
                     <div className="user" onClick={()=>{
                       dispatch(login(

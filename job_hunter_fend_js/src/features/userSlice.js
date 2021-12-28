@@ -7,6 +7,7 @@ export const userslice= createSlice({
         user:{
             email:"none",
             isloggedIn:false,
+            username:""
         }
     },
     reducers:{

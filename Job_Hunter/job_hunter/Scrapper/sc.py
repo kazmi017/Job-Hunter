@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import argparse
 from job_hunter.models import Job
 import datetime,time
 
@@ -23,7 +22,7 @@ data={
 
 
 # returns clean search with the parameters passed
-def scrape_jobs(position,location,skills):
+def scrape_jobs_linkdin(position,location,skills):
     # print(position+location+skills)
     URL = f"http://api.scraperapi.com?api_key=f9da680341c9f31e2293611231a73bf7&url=https://www.linkedin.com/jobs/search/?keywords={position}&location={location}"
     page = requests.get(URL)

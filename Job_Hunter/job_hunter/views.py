@@ -2,9 +2,11 @@ from django.shortcuts import render
 #from .Scrapper.scrapping import data as d
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
+
+from Job_Hunter.job_hunter.Scrapper.scrapping import scrape_jobs_indeed
 from .models import Job,CV,User
 from .serializers import CVser, Jobser,USERser,Loginser, CVserl,Statser,UNser,Phser,Pswser
-from .Scrapper.sc import scrape_jobs
+from .Scrapper.sc import scrape_jobs_linkdin
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from django.views.decorators.csrf import csrf_exempt
@@ -16,14 +18,15 @@ def scrap(request):
     sk=tuple()
     sk+=("Plumber","Android","Accountant","Civil","Mechanical","Electrical","Teacher","Flutter")
     for sks in sk:
-        scrape_jobs(sks.lower(), "Pakistan",sks)
+        scrape_jobs_linkdin(sks.lower(), "Pakistan",sks)
     positions=CV.objects.values('Skills')
     for position in positions:
         skills=(str(position['Skills']).split(", "))
         for skill in skills:
             if skill not in sk:
                 sk+=(skill,)
-                scrape_jobs(sk.replace(" ","+").lower(), "Pakistan",skill)
+                scrape_jobs_linkdin(sk.replace(" ","+").lower(), "Pakistan",skill)
+                scrape_jobs_indeed(sk.replace(" ","+").lower(), "Pakistan",skill)
     return JsonResponse(sk, safe=False)
 @csrf_exempt
 def joblist(request):
@@ -43,8 +46,7 @@ def signup(request):
         # print(data['Email'])
         if serializer.is_valid():
             serializer.save()
-            d={"Email":data['Email']}
-            return JsonResponse(d,safe=False)
+            return JsonResponse("User Added",safe=False)
         else:
             print(serializer.errors)
             return JsonResponse("Failed to Add User",safe=False)
@@ -89,6 +91,8 @@ def chUsername(request):
             if serial.is_valid():
                 serial.update(instance,serial.validated_data)
                 return JsonResponse("Changed", safe=False)
+            else:
+                return JsonResponse(serial.errors, safe=False)
 
 
 @csrf_exempt
@@ -107,7 +111,10 @@ def chPhone(request):
             if serial.is_valid():
                 serial.update(instance,serial.validated_data)
                 return JsonResponse("Changed", safe=False)
-
+            else:
+                return JsonResponse(serial.errors, safe=False)
+        else:
+            return JsonResponse("Error",safe=False)
 
 @csrf_exempt
 def chPass(request):
@@ -127,6 +134,8 @@ def chPass(request):
                 return JsonResponse("Changed", safe=False)
             else:
                 return JsonResponse(serial.errors, safe=False)
+        else:
+            return JsonResponse("Error",safe=False)
 
 
 
@@ -202,7 +211,7 @@ def saveCV(request):
             save.save()
             skills=data['Skills']
             for skill in skills:
-                    scrape_jobs(skill.replace(" ","+").lower(), "Pakistan",skill)
+                    scrape_jobs_linkdin(skill.replace(" ","+").lower(), "Pakistan",skill)
             return JsonResponse(data['Name'], safe=False)
         else:
             return JsonResponse(save.errors, safe=False)

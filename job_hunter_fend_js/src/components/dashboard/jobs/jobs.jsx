@@ -19,7 +19,7 @@ function Jobs() {
         City: '',
         Date:'',
      });
-     var data=store.getState()["user"]["email"]
+     var data={"Email":store.getState()["user"]["email"]}
      var skill_data={"Skill":skill}
   
 
@@ -33,7 +33,6 @@ function Jobs() {
         .then(
           (result) => {
             setSk(result)
-            // setSkill(result[0])
             console.log(result)
             
           }
@@ -92,15 +91,9 @@ function Jobs() {
     } else {
       return (
         <div className="m">
-          <div className="skill">
-          {itemskill.map(itemskill => (
-            <div className="skilltiles" onClick={()=> {setSkill(itemskill);}}>
-                {itemskill} <br />
-            </div>
-          ))
-          }
-          <div className="clear" onClick={()=> {setSkill("");}}>clear</div>
-          </div>
+          bbbb
+          asdasd
+          asdasd
           <div className="job">
             <div className="r1">
           {items.map(item => (
