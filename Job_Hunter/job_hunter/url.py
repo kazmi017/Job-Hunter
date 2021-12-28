@@ -1,10 +1,11 @@
 from django.urls import path
 from .views import joblist,scrap, signup, login,jobforu,jobs,joblists,saveCV,cvstat,cvupdate,cvdets,cvstatCH,joblistP,joblistT,uppass,chUsername,chPhone
-from .views import chPass
+from .views import chPass,forget
 urlpatterns = [
     path('sc/', scrap),
     path('signup/', signup),
     path('login/', login),
+    path('forget/', forget),
     path('job/', jobforu),
     path('skill/', jobs),
     path('jobprov/', joblistP),

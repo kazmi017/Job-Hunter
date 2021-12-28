@@ -3,7 +3,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 
-from Job_Hunter.job_hunter.Scrapper.scrapping import scrape_jobs_indeed
+from .Scrapper.sc2 import scrape_jobs_rozee
+
+from .Scrapper.scrapping import scrape_jobs_indeed
 from .models import Job,CV,User
 from .serializers import CVser, Jobser,USERser,Loginser, CVserl,Statser,UNser,Phser,Pswser
 from .Scrapper.sc import scrape_jobs_linkdin
@@ -12,21 +14,21 @@ from rest_framework import serializers, status
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 import json
+from django.conf import settings
+from django.core.mail import send_mail
 # HAVE TO ADD COMPANY NAME<<<ASK N>>>
 
 def scrap(request):
     sk=tuple()
-    sk+=("Plumber","Android","Accountant","Civil","Mechanical","Electrical","Teacher","Flutter")
-    for sks in sk:
-        scrape_jobs_linkdin(sks.lower(), "Pakistan",sks)
     positions=CV.objects.values('Skills')
     for position in positions:
         skills=(str(position['Skills']).split(", "))
         for skill in skills:
             if skill not in sk:
                 sk+=(skill,)
-                scrape_jobs_linkdin(sk.replace(" ","+").lower(), "Pakistan",skill)
-                scrape_jobs_indeed(sk.replace(" ","+").lower(), "Pakistan",skill)
+                scrape_jobs_linkdin(skill.replace(" ","+").lower(), "pakistan",skill)
+                scrape_jobs_indeed(skill.replace(" ","+").lower(), "pakistan",skill)
+                scrape_jobs_rozee(skill.replace(" ","+").lower(), "pakistan",skill)
     return JsonResponse(sk, safe=False)
 @csrf_exempt
 def joblist(request):
@@ -46,6 +48,11 @@ def signup(request):
         # print(data['Email'])
         if serializer.is_valid():
             serializer.save()
+            subject = 'Recovery'
+            message = 'Hi '+serializer.data['Username']+' Your \n Email:'+serializer.data['Email']+'\nPassword:'+serializer.data['Password']+'\nUsername:'+serializer.data['Username']+'\nPhoneNumber:'+serializer.data['PhoneNumber']
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = (serializer.data['Email'],)
+            send_mail( subject, message, email_from, recipient_list )
             return JsonResponse("User Added",safe=False)
         else:
             print(serializer.errors)
@@ -73,7 +80,24 @@ def login(request):
         else:
             return JsonResponse("Authentication Failed",safe=False)
 
-
+@csrf_exempt
+def forget(request):
+    if request.method == 'POST':
+        data=JSONParser().parse(request)
+        un=data['Username']
+        em=data['Email']
+        q= User.objects.filter(Email=em).first()
+        serializer=Loginser(q)
+        usM=serializer.data['Username']
+        if un==usM:
+            subject = 'Recovery'
+            message = 'Hi'+serializer.data['Username']+' Your \n Email:'+serializer.data['Email']+'\nPassword:'+serializer.data['Password']+'\nUsername:'+serializer.data['Username']+'\nPhoneNumber:'+serializer.data['PhoneNumber']
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = (data['Email'],)
+            send_mail( subject, message, email_from, recipient_list )
+            return JsonResponse(data,safe=False)
+        else:
+            return JsonResponse("Authentication Failed",safe=False)
 
 @csrf_exempt
 def chUsername(request):

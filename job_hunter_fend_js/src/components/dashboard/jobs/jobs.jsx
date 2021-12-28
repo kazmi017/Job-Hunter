@@ -91,9 +91,6 @@ function Jobs() {
     } else {
       return (
         <div className="m">
-          bbbb
-          asdasd
-          asdasd
           <div className="job">
             <div className="r1">
           {items.map(item => (
@@ -107,8 +104,8 @@ function Jobs() {
                 City: item.City,
 
             }) }>
-                {item.Skill} <br />
-                {item.JobTitle} <br />
+                <span>{item.Skills} <br /></span>
+                <span>{item.JobTitle} <br /></span>
                 {item.City} <br />
                 {item.Salary} <br />
                 {item.DatePosted} <br />
@@ -118,6 +115,7 @@ function Jobs() {
           <hr style={{padding:10+'px'}} />
           <div className="r2">
               <i>Discription</i>
+              <a target="_blank" href={allValues.URL}>
               <div className="disc">
                 <span> Title:</span>  {allValues.JobTitle}<br /> 
                 <span> Description:</span> {allValues.JobDescription}<br /> 
@@ -126,6 +124,7 @@ function Jobs() {
                 <span>City:</span>  {allValues.City}<br /> 
 
               </div>
+              </a>
           </div>
         </div>
         </div>

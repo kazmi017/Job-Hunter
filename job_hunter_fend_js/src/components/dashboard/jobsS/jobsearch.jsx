@@ -87,8 +87,7 @@ function JobsS(props) {
                 City: item.City,
 
             }) }>
-                {item.Skill} <br />
-                {item.JobTitle} <br />
+                <span>{item.JobTitle} <br /></span>
                 {item.City} <br />
                 {item.Salary} <br />
                 {item.DatePosted} <br />

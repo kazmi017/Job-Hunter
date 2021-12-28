@@ -128,6 +128,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER ='envocaps@gmail.com'
+EMAIL_HOST_PASSWORD ='ptdmptdm5124'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -144,4 +152,6 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://192.168.0.103:3000',
 ]
-# CORS_ALLOW_ALL_ORIGINS: True
+# ALLOWED_HOSTS=['*']
+
+# CORS_ORIGIN_ALLOW_ALL = True

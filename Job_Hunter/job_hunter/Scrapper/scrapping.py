@@ -22,7 +22,7 @@ data={
 
 # returns clean search with the parameters passed
 def scrape_jobs_indeed(position,location,skills):
-    URL = f"http://api.scraperapi.com?api_key=f9da680341c9f31e2293611231a73bf7&url=https://pk.indeed.com/jobs?q={position}&l={location}&fromage=1"
+    URL = f"http://api.scraperapi.com?api_key=08ce1d9dbacc70a7e3eb189a637b1a7c&url=https://pk.indeed.com/jobs?q={position}&l={location}&fromage=1"
     page = requests.get(URL)
     # print(page.text)
     soup = BeautifulSoup(page.content, "html.parser")
@@ -44,7 +44,6 @@ def scrape_jobs_indeed(position,location,skills):
         data["link"]="https://pk.indeed.com"+str(link_elem)
         description_elem = job_elem.find("div", class_="job-snippet")
         data["description"]=str(description_elem.text).strip()
-        print(data)
         j=Job(Skills=skills,JobTitle=data["title"],JobDescription=data["description"],Salary=data["salary"],URL=data["link"],Province=data["location"],City=data["location"],Address=data["location"],DatePosted=data["time"])
         j.save()
 

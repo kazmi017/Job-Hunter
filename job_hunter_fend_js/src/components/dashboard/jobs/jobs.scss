@@ -18,17 +18,16 @@
             .jobtiles{
                 border-radius:15px 20px 15px 0px ;
                 margin-left: 20px;
+                margin-top: 10px;
                 padding-top: 15px;
                 height: 120px;
-                background-color: rgba(144, 35, 163, 0.8);
+                background: #f3f3f3;
                 text-align: center;
-                color: white;
+                color: black;
                 font-weight: bold;
                 border-bottom: 4px solid #e6e9ec;
             }
-            .jobtiles:focus {
-                background: #000;
-            }
+            
         }
         .r2{
             margin-top: 5px;
@@ -45,13 +44,16 @@
                 padding: 10px;
                 padding-bottom: 50px;
                 height: max-content;
-                background-color: rgba(20,145,222,0.8);
+                background: #f3f3f3;
                 text-align: center;
                 border-radius: 7px;
-                color: white;
-                font-weight: bold;
+                color: black;
+                font-weight: normal;
 
             }
         }
     }
     }
+span{
+    color: blue;
+}

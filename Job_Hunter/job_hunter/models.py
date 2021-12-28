@@ -17,6 +17,8 @@ class CV(models.Model):
     UniSubject = models.CharField(max_length=30)
     UniAttended = models.CharField(max_length=30)
     UniMarks = models.CharField(max_length=30)
+    DoB = models.CharField(max_length=1000)
+    Interest = models.CharField(max_length=1000)
     Skills = models.CharField(max_length=1000)
     Experience = models.CharField(max_length=100)
 

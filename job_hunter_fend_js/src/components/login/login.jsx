@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import validator from 'validator';
 
 export function Login(props) {
+  const [Header,Setheader]=useState('Login')
   const [error, setError] = useState('')
   const [formData, setFormData] = useState({
     Email:'',
     Password: '',
+    Username:''
   });
 
   let nav = useNavigate();
@@ -28,11 +30,18 @@ export function Login(props) {
 
    const URL='http://ammarkazmi5124.pythonanywhere.com/login/'
 
+   const click=()=>{
+     if(Header==='Login')
+    Setheader('Recover')
+    else
+    Setheader('Login')
 
+   }
   const handleSubmit=(e)=>{
     const body = JSON.stringify(formData);
     e.preventDefault();
     console.log('my data::: ',formData)
+    if(Header==='Login')
     fetch(URL, {
       method: 'POST',
       body: body
@@ -55,6 +64,23 @@ else{
     .catch(error => {
       console.error('There has been a problem with your fetch operation:', error);
     });
+else
+fetch("https://ammarkazmi5124.pythonanywhere.com/forget/", {
+  method: 'POST',
+  body: body
+}).then(res => res.json())
+.then((result)=>{
+if (result!=="Authentication Failed"){
+  setError("Check your Email!")
+}
+else{
+setError(result)
+}
+}
+)
+.catch(error => {
+  console.error('There has been a problem with your fetch operation:', error);
+});
 
    };
 
@@ -62,7 +88,7 @@ else{
 
     return (
       <div className="mainL" ref={props.containerRef}>
-        <div className="header">Login</div>
+        <div className="header">{Header}</div>
         
         <form onSubmit={(e) => handleSubmit(e)}> 
         <div className="content">
@@ -73,21 +99,32 @@ else{
               onChange={(e) => validateEmail(e)}
               />
             </div>
-            <div className="form-group">
+            {Header==='Login'?<div className="form-group">
               <label htmlFor="Password">Password</label>
               <input type="password" name="Password" placeholder="password"
               onChange={e => onChange(e)} />
-              
             </div>
+            :<div className="form-group">
+              <label htmlFor="Username">Username</label>
+              <input type="text" name="Username" placeholder="Username"
+              onChange={e => onChange(e)} />
+            </div>
+}
             <span style={{
               fontWeight: 'bold',
               color: 'red',
               }}>{error}</span>
+              <div className="forget" onClick={()=>{click()}}>
+              <span style={{
+              fontWeight: 'bold',
+              color: 'blue',
+              }}>Forgot Password?</span>
+              </div>
           </div>
         </div>
         <div className="footer">
           <button type="submit" className="btn">
-            Login
+            {Header}
           </button>
         </div>
         </form>
