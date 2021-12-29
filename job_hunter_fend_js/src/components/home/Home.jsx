@@ -82,12 +82,7 @@ class Home extends Component {
 
         
       </div>
-      <div className="footer">
-        
-        <div className="usr">Conact Us</div>
-        <hr />
-        <div className="info">UseFul Links</div>
-      </div>
+      
       
     </div>
       
