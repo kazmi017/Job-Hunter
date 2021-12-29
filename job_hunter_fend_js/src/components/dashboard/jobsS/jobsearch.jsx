@@ -94,7 +94,7 @@ function JobsS(props) {
             </div>
           ))}
           </div>
-          <hr style={{padding:10+'px'}} />
+          
           <div className="r2">
               <i>Discription</i>
               <div className="disc">

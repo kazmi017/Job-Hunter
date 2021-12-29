@@ -112,7 +112,7 @@ function Jobs() {
             </div>
           ))}
           </div>
-          <hr style={{padding:10+'px'}} />
+          
           <div className="r2">
               <i>Discription</i>
               <a target="_blank" href={allValues.URL}>

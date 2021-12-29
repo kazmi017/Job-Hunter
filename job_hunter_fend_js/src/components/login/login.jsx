@@ -47,17 +47,17 @@ export function Login(props) {
       body: body
   }).then(res => res.json())
   .then((result)=>{
-    if (result!=="Authentication Failed"){
-      setError(result["Username"]+" Authenticated Successfully")
+    if (result["Response"]!=="Authentication Failed"){
+      setError(result["Response"]+" Authenticated Successfully")
     dispatch(login({
     email:formData['Email'],
     isloggedIn:true,
-    username:result["Username"],
+    username:result["Response"],
   }))
   nav("/dashboard");
 }
 else{
-  setError(result)
+  setError(result["Response"])
 }
 }
 )
@@ -70,11 +70,11 @@ fetch("https://ammarkazmi5124.pythonanywhere.com/forget/", {
   body: body
 }).then(res => res.json())
 .then((result)=>{
-if (result!=="Authentication Failed"){
+if (result["Response"]!=="Authentication Failed"){
   setError("Check your Email!")
 }
 else{
-setError(result)
+setError(result["Response"])
 }
 }
 )

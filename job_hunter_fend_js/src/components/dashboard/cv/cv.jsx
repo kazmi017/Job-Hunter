@@ -6,6 +6,10 @@ function CV(){
   
   const [button,setBtn]=useState("Submit")
 
+  const [formData1, setFormData1] = useState({
+    'Email' :store.getState()["user"]["email"],
+    'isCvCreated':1
+  });
 
 
   const [formData, setFormData] = useState({
@@ -23,6 +27,8 @@ function CV(){
     'UniSubject':'',
     'UniAttended':'',
     'UniMarks':'',
+    'DOB':'',
+    'Interest':'',
     'Skills':'',
     'Experience':'',
   });
@@ -45,6 +51,17 @@ function CV(){
         .then(
           (result) => {
             console.log(result)
+            fetch("http://ammarkazmi5124.pythonanywhere.com/cvstat/",{
+        method: 'POST',
+        body: JSON.stringify(formData1)
+    })
+        .then(res => res.json())
+        .then(
+          (result) => {
+            console.log('cv updated',result)
+            
+          }
+        )
           }
         )
   }
@@ -76,7 +93,8 @@ function CV(){
           .then(res => res.json())
           .then(
             (result) => {
-              if(result==1){
+              console.log(result)
+              if(result===1){
                 setBtn("Update")
               console.log(result)
               fetch("http://ammarkazmi5124.pythonanywhere.com/cvdet/",{
@@ -160,9 +178,7 @@ function CV(){
                   <input className="search" type="text" value={formData["UniSubject"]} name="UniSubject" placeholder="University Subject"
                   onChange={e => onChange(e)} />
                   
-                  <label  htmlFor="dob">Date of Birth</label>
-                  <input className="search" type="text" name="dob" placeholder="15 Novemeber 1997"
-                  onChange={e => onChange(e)} />
+                  
 
                   <label  htmlFor="UniAttended">University Attended</label>
                   <input className="search" type="text" value={formData["UniAttended"]} name="UniAttended" placeholder="University Attended"
@@ -170,6 +186,14 @@ function CV(){
 
                   <label  htmlFor="UniMarks">University Marks</label>
                   <input className="search" type="text" value={formData["UniMarks"]} name="UniMarks" placeholder="University Marks"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="DOB">Date of Birth</label>
+                  <input className="search" type="text" value={formData["DOB"]} name="DOB" placeholder="15 Novemeber 1997"
+                  onChange={e => onChange(e)} />
+
+                  <label  htmlFor="Interest">Interests</label>
+                  <input className="search" type="text" value={formData["Interest"]} name="Interest" placeholder="Interest i.e Android Developer, React Developer"
                   onChange={e => onChange(e)} />
                   
 

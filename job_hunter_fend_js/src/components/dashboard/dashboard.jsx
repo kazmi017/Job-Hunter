@@ -135,16 +135,18 @@ if(ch==3){
                             <h4 className="heading">Jobs</h4> */}
                             <div className="c space" onClick={() => setP(<Jobs/>)} > <MdDesktopMac className="icons"/> Jobs</div>
                             {/* <br />
-                            <h4 className="heading">About</h4> */}
-                            <div className="c space" onClick={() => setP(<CV/>)} > <MdInfo className="icons"/> About Us</div>
-                            {/* <br />
                             <h4 className="heading">CV</h4> */}
                             <div className="c space" onClick={() => setP(<CV/>)} > <MdCreate className="icons"/> Create CV</div>
                         </div>
                     </div>
                     <div className="ground">{page}</div>
                 </div>
-               
+                <div className="footer">
+        
+        <div className="usr">Conact Us</div>
+        <hr />
+        <div className="info">UseFul Links</div>
+      </div>
             </div>
         );
 }
